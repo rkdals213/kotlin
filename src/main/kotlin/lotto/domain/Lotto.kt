@@ -20,7 +20,7 @@ class Lotto(private val lottoNumbers: List<Number>) {
     }
 
     init {
-        require(lottoNumbers.distinct().size == 6) {
+        require(lottoNumbers.distinct().size == LOTTO_NUMBER_COUNT) {
             "로또 번호의 갯수는 중복되지 않고 6개여야 합니다"
         }
     }
