@@ -21,5 +21,4 @@ class LastWeekLotto(
 
     fun isBonusNumberMatch(number: Number) =
         bonusNumber == number
-
 }
