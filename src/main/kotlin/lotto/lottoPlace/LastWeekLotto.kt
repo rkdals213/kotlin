@@ -16,10 +16,10 @@ class LastWeekLotto(
         }
     }
 
-    fun contains(number: Number): Boolean =
+    fun contains(number: Number) =
         lottoNumbers.contains(number)
 
-    fun isBonusNumberMatch(number: Number): Boolean =
+    fun isBonusNumberMatch(number: Number) =
         bonusNumber == number
 
 }
