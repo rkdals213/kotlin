@@ -1,4 +1,4 @@
-package lotto.view.input
+package lotto.view
 
 import lotto.lottoPlace.LastWeekLotto
 import lotto.domain.Number

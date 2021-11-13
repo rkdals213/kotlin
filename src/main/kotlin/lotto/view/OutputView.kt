@@ -1,4 +1,4 @@
-package lotto.view.output
+package lotto.view
 
 import lotto.domain.Lottos
 import lotto.lottoPlace.LottoPlace

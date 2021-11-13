@@ -2,10 +2,10 @@ package lotto
 
 import lotto.domain.Shop
 import lotto.lottoPlace.LottoPlaceChecker
-import lotto.view.input.InputView
-import lotto.view.output.OutputView
+import lotto.view.InputView
+import lotto.view.OutputView
 
-fun main(args: Array<String>) {
+fun main() {
     val cost = InputView.getCost()
     val countOfManualBuy = InputView.getCountOfManualBuy()
     val manualLottoNumbers = InputView.getManualLottoNumbers(countOfManualBuy)
