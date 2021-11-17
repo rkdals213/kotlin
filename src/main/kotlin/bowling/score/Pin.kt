@@ -2,7 +2,7 @@ package bowling.score
 
 class Pin(private val count: Int) {
     companion object {
-        private const val MAX_COUNT = 10
+        const val MAX_COUNT = 10
     }
 
     init {

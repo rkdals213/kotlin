@@ -33,18 +33,19 @@ class OutputView {
         }
 
         private fun appendFrameCurrent(frame: Frame, stringBuilder: StringBuilder) {
-            val result = frame.current()
+            val desc = frame.current()
+                .joinToString("|") { it.print() }
 
-            stringBuilder.append(" ${result.print().padEnd(4, ' ')} |")
+            stringBuilder.append(" ${desc.padEnd(5, ' ')}|")
         }
 
         private fun appendName(stringBuilder: StringBuilder, frames: Frames) {
             stringBuilder.append("| ")
             val name = frames.name()
                 .toString()
-                .padEnd(4, ' ')
+                .padEnd(5, ' ')
             stringBuilder.append(name)
-            stringBuilder.append(" |")
+            stringBuilder.append("|")
         }
     }
 }

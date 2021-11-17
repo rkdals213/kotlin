@@ -1,5 +1,6 @@
 package bowling.domain.frame
 
+import bowling.score.Score
 import bowling.state.State
 
 interface Frame {
@@ -7,11 +8,15 @@ interface Frame {
 
     fun nextFrame(): Frame
 
-    fun current(): State
+    fun current(): List<State>
 
     fun number(): Int
 
-    fun isFinished(): Boolean
+    fun gameFinished(): Boolean
+
+    fun stateFinished(): Boolean
+
+    fun createScore(): Score
 }
 
 

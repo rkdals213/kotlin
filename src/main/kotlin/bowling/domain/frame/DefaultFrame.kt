@@ -3,6 +3,7 @@ package bowling.domain.frame
 import bowling.state.State
 import bowling.state.running.Ready
 
+
 abstract class DefaultFrame(private val number: Int) : Frame {
     protected var state: State = Ready()
 
@@ -11,4 +12,7 @@ abstract class DefaultFrame(private val number: Int) : Frame {
     }
 
     override fun number() = number
+
+    override fun createScore() = state.createScore()
+
 }

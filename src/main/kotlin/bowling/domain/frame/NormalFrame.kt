@@ -21,7 +21,9 @@ class NormalFrame(private val number: Int) : DefaultFrame(number) {
         return NormalFrame(number + 1)
     }
 
-    override fun current() = state
+    override fun current() = listOf(state)
 
-    override fun isFinished() = false
+    override fun gameFinished() = false
+
+    override fun stateFinished() = state.isFinished()
 }

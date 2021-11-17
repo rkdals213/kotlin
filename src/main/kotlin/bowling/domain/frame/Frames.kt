@@ -13,7 +13,7 @@ class Frames(private val name: Name) {
     }
 
     fun ableToPitch() = frames.last()
-        .isFinished()
+        .gameFinished()
         .not()
 
     fun current() = frames.toList()
