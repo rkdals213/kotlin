@@ -6,6 +6,4 @@ class LadderLines(width: Int, height: Int) {
     }
 
     fun move(index: Int, height: Int): Int = ladderLines[height].move(index)
-
-    val size = ladderLines.size
 }
