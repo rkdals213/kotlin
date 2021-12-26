@@ -1,15 +1,5 @@
 package ladder.domain
 
-class LadderLines(width: Int, height: Int) {
-    val ladderLines: List<LadderLine> = List(height) {
-        LadderLine(Points(width))
-    }
-
-    fun move(index: Int, height: Int): Int = ladderLines[height].move(index)
-
-    val size = ladderLines.size
-}
-
 class LadderLine(val points: Points) {
     fun move(index: Int) = points.move(index)
 }
