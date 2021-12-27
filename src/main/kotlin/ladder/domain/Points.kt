@@ -15,10 +15,6 @@ class Points(val width: Int) {
         points = tempList.toList()
     }
 
-    companion object {
-        private val RANDOM = Random()
-    }
-
     private fun makeRandomPoint(
         tempList: MutableList<Point>,
         index: Int
@@ -39,4 +35,8 @@ class Points(val width: Int) {
     }
 
     fun move(index: Int): Int = points[index].apply(index)
+
+    companion object {
+        private val RANDOM = Random()
+    }
 }
