@@ -1,8 +1,5 @@
 package reference.monoid
 
-import reference.FunList
-import reference.funListOf
-
 interface Foldable<out A> {
     fun <B> foldLeft(acc: B, f: (B, A) -> B): B
 
