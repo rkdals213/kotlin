@@ -10,6 +10,13 @@ fun main() {
     println(partial3)
 
     println(multiThree(1)(2)(3))
+
+    val multi = { a: Int, b: Int, c: Int -> a * b * c }
+    val curried = multi.curried()
+    println(curried(1)(2)(3))
+
+    val uncurried = curried.uncurried()
+    println(uncurried)
 }
 
 fun multiThree(a: Int, b: Int, c: Int) = a * b * c
