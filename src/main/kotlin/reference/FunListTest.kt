@@ -21,6 +21,9 @@ fun main() {
     println(add3)
     val product3 = list.map { it * 3 }
     println(product3)
+
+    val intList = funListOf(1, 2, 3, 4, 5)
+    println(sumByFoldLeft(intList))
 }
 
 sealed class FunList<out T> {
@@ -29,6 +32,13 @@ sealed class FunList<out T> {
         val head: T,
         val tail: FunList<T>
     ) : FunList<T>()
+}
+
+fun <T> funListOf(vararg elements: T): FunList<T> = elements.toFunList()
+
+private fun <T> Array<out T>.toFunList(): FunList<T> = when {
+    this.isEmpty() -> FunList.NIL
+    else -> FunList.Cons(this[0], this.copyOfRange(1, this.size).toFunList())
 }
 
 fun <T> FunList<T>.addHead(head: T): FunList<T> = FunList.Cons(head, this)
@@ -71,3 +81,19 @@ tailrec fun <T, R> FunList<T>.map(acc: FunList<R> = FunList.NIL, f: (T) -> R): F
     FunList.NIL -> acc.reverse()
     is FunList.Cons -> tail.map(acc.addHead(f(head)), f)
 }
+
+tailrec fun <T, R> FunList<T>.foldLeft(acc: R, f: (R, T) -> R): R = when (this) {
+    FunList.NIL -> acc
+    is FunList.Cons -> tail.foldLeft(f(acc, head), f)
+}
+
+fun <T, R> FunList<T>.foldRight(acc: R, f: (T, R) -> R): R = when (this) {
+    FunList.NIL -> acc
+    is FunList.Cons -> f(head, tail.foldRight(acc, f))
+}
+
+fun sumByFoldLeft(list: FunList<Int>): Int = list.foldLeft(0) { acc, x -> acc + x }
+
+fun <T> printFunList(list: FunList<T>) = list.toStringByFoldLeft()
+
+fun <T> FunList<T>.toStringByFoldLeft() = println("[${foldLeft("") { acc, x -> "$acc, $x" }.drop(2)}]")

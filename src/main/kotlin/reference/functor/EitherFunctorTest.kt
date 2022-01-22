@@ -8,7 +8,9 @@ fun main() {
 }
 
 sealed class Either<out L, out R> : Functor<R> {
-    abstract override fun <B> fmap(f: (R) -> B): Functor<B>
+    abstract override fun <B> fmap(f: (R) -> B): Either<L, B>
+
+    companion object
 }
 
 data class Left<out L>(val value: L) : Either<L, kotlin.Nothing>() {
@@ -23,4 +25,11 @@ fun divideTenByN(n: Int): Either<String, Int> = try {
     Right(10 / n)
 } catch (e: ArithmeticException) {
     Left("divided by zero")
+}
+
+fun <A> Either.Companion.pure(value: A) = Right(value)
+
+infix fun <L, A, B> Either<L, (A) -> B>.apply(f: Either<L, A>): Either<L, B> = when (this) {
+    is Left -> this
+    is Right -> f.fmap(value)
 }

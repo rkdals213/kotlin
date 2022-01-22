@@ -12,17 +12,26 @@ interface Functor<out A> {
 sealed class Maybe<out A> : Functor<A> {
     abstract override fun toString(): String
 
-    abstract override fun <B> fmap(f: (A) -> B): Functor<B>
+    abstract override fun <B> fmap(f: (A) -> B): Maybe<B>
+
+    companion object
 }
 
 data class Just<out A>(val value: A) : Maybe<A>() {
     override fun toString(): String = "Just($value)"
 
-    override fun <B> fmap(f: (A) -> B): Functor<B> = Just(f(value))
+    override fun <B> fmap(f: (A) -> B): Maybe<B> = Just(f(value))
 }
 
 object Nothing : Maybe<kotlin.Nothing>() {
     override fun toString(): String = "Nothing"
 
-    override fun <B> fmap(f: (kotlin.Nothing) -> B): Functor<B> = Nothing
+    override fun <B> fmap(f: (kotlin.Nothing) -> B): Maybe<B> = Nothing
+}
+
+fun <A> Maybe.Companion.pure(value: A) = Just(value)
+
+infix fun <A, B> Maybe<(A) -> B>.apply(f: Maybe<A>): Maybe<B> = when (this) {
+    is Just -> f.fmap(value)
+    is Nothing -> Nothing
 }
