@@ -11,12 +11,12 @@ sealed class Either<out L, out R> : Functor<R> {
     abstract override fun <B> fmap(f: (R) -> B): Functor<B>
 }
 
-data class Left<out L>(val value: L) : Either<L, Nothing>() {
-    override fun <B> fmap(f: (Nothing) -> B): Either<L, B> = this
+data class Left<out L>(val value: L) : Either<L, kotlin.Nothing>() {
+    override fun <R2> fmap(f: (kotlin.Nothing) -> R2): Either<L, R2> = this
 }
 
-data class Right<out R>(val value: R) : Either<Nothing, R>() {
-    override fun <B> fmap(f: (R) -> B): Either<Nothing, B> = Right(f(value))
+data class Right<out R>(val value: R) : Either<kotlin.Nothing, R>() {
+    override fun <R2> fmap(f: (R) -> R2): Either<kotlin.Nothing, R2> = Right(f(value))
 }
 
 fun divideTenByN(n: Int): Either<String, Int> = try {

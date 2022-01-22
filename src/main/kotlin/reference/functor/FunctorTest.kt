@@ -21,7 +21,7 @@ data class Just<out A>(val value: A) : Maybe<A>() {
     override fun <B> fmap(f: (A) -> B): Functor<B> = Just(f(value))
 }
 
-private object Nothing : Maybe<kotlin.Nothing>() {
+object Nothing : Maybe<kotlin.Nothing>() {
     override fun toString(): String = "Nothing"
 
     override fun <B> fmap(f: (kotlin.Nothing) -> B): Functor<B> = Nothing
