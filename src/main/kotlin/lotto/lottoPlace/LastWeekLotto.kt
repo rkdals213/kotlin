@@ -3,8 +3,8 @@ package lotto.lottoPlace
 import lotto.domain.Number
 
 class LastWeekLotto(
-    private val lottoNumbers: List<Number>,
-    private val bonusNumber: Number
+    val lottoNumbers: List<Number>,
+    val bonusNumber: Number
 ) {
     companion object {
         private const val LOTTO_NUMBER_COUNT = 6

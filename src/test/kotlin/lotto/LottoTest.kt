@@ -27,7 +27,7 @@ class LottoTest {
                 //when
 
                 //then
-                val lottoSize = lotto.lottoNums()
+                val lottoSize = lotto.lottoNumbers
                     .size
 
                 assertThat(lottoSize).isEqualTo(6)
@@ -55,7 +55,7 @@ class LottoTest {
                 //then
                 val lotto = Lotto(lottoNumbers)
 
-                assertThat(lotto.lottoNums()).containsExactlyElementsOf(lottoNumbers)
+                assertThat(lotto.lottoNumbers).containsExactlyElementsOf(lottoNumbers)
             }
         }
 

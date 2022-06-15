@@ -1,7 +1,7 @@
 package lotto.domain
 
 class Number(
-    private val number: Int
+    val number: Int
 ) {
     companion object {
         private const val MIN_NUMBER = 1;

@@ -25,5 +25,5 @@ class Lottos(
 
     fun count() = count
 
-    fun cost() = lottos.sumOf { lotto -> lotto.cost() }
+    fun cost() = lottos.sumOf { lotto -> lotto.cost }
 }

@@ -4,7 +4,12 @@ import lotto.lottoPlace.LastWeekLotto
 import java.util.stream.Stream
 import kotlin.streams.toList
 
-class Lotto(private val lottoNumbers: List<Number>) {
+class Lotto(
+    val lottoNumbers: List<Number>
+) {
+    val cost: Int
+        get() = COST
+
     constructor() : this(Stream.iterate(1) { t -> t + 1 }
         .limit(MAX_NUMBER)
         .map { Number(it) }
@@ -35,13 +40,5 @@ class Lotto(private val lottoNumbers: List<Number>) {
         return lottoNumbers.any { number ->
             lastWeekLotto.isBonusNumberMatch(number)
         }
-    }
-
-    fun lottoNums(): List<Number> {
-        return lottoNumbers
-    }
-
-    fun cost(): Int {
-        return COST
     }
 }

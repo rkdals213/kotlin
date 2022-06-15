@@ -1,9 +1,9 @@
 package lotto.lottoPlace
 
 enum class LottoPlace(
-    private val correctNumberCount: Int,
-    private val bonusNumberCorrect: Boolean,
-    private val prize: Int
+    val correctNumberCount: Int,
+    val bonusNumberCorrect: Boolean,
+    val prize: Int
 ) {
     FIRST(6, false, 2_000_000_000),
     SECOND(5, true, 30_000_000),
@@ -13,9 +13,10 @@ enum class LottoPlace(
     NOTHING(0, false, 0);
 
     companion object {
-        fun findByCorrectNumberCount(count: Int, isBonusNumberCorrect: Boolean) = values().find { lottoPlace ->
-            correctNumberCountEqual(lottoPlace, count) && isBonusNumberCorrect(lottoPlace, isBonusNumberCorrect)
-        } ?: NOTHING
+        fun findByCorrectNumberCount(count: Int, isBonusNumberCorrect: Boolean) =
+            values().find { lottoPlace ->
+                correctNumberCountEqual(lottoPlace, count) && isBonusNumberCorrect(lottoPlace, isBonusNumberCorrect)
+            } ?: NOTHING
 
 
         private fun correctNumberCountEqual(lottoPlace: LottoPlace, count: Int) =
@@ -28,10 +29,4 @@ enum class LottoPlace(
             .asList()
             .subList(0, 5)
     }
-
-    fun prize(): Int = prize
-
-    fun correctCount(): Int = correctNumberCount
-
-    fun bonusNumberCorrect(): Boolean = bonusNumberCorrect
 }
