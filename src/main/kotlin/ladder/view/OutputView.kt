@@ -7,12 +7,11 @@ fun showParticipants(participants: Participants) {
         .forEach {
             printTextInFormat(it.name)
         }
-    println()
+        .also { println() }
 }
 
 fun showLadder(ladder: Ladder) {
     ladder.ladderLines
-        .ladderLines
         .forEach { ladderLine ->
             ladderLine.points
                 .points
@@ -35,7 +34,7 @@ private fun showPoint(point: Point) {
 fun showPrize(prizes: Prizes) {
     prizes.prizes
         .forEach { printTextInFormat(it.prize) }
-    println()
+        .also { println() }
 }
 
 private fun printTextInFormat(text: String) {
@@ -59,7 +58,7 @@ fun showAllResult(
 
 fun showResult(participant: String, prizes: Prizes, resultIndex: Int) {
     println(
-        "${participant} : ${
+        "$participant : ${
             prizes.prizeOf(resultIndex)
                 .prize
         }"
