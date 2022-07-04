@@ -15,6 +15,11 @@ fun main() {
     val curried = multi.curried()
     println(curried(1)(2)(3))
 
+    val curried1: (Int) -> (Int) -> Int = curried(1)
+    val curried2: (Int) -> Int = curried1(2)
+    val curried3: Int = curried2(3)
+    println(curried3)
+
     val uncurried = curried.uncurried()
     println(uncurried)
 }

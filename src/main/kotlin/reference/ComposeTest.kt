@@ -8,8 +8,8 @@ fun main() {
     val composeFunc = addThree compose twice
     println(composeFunc(3))
 
-    val absolute = { i: List<Int> -> i.map { it -> abs(it) } }
-    val negative = { i: List<Int> -> i.map { it -> -it } }
+    val absolute = { i: List<Int> -> i.map { abs(it) } }
+    val negative = { i: List<Int> -> i.map { -it } }
     val minimum = { i: List<Int> -> i.minOrNull() }
 
     val input = listOf(3, -1, 5, 2, 4, -8, 14)
@@ -17,6 +17,9 @@ fun main() {
     println(result)
 
     val composed = minimum compose negative compose absolute
+    println(composed(input))
+
+    val composed2 = absolute and negative and minimum
     println(composed(input))
 
     val powerOfTwo = { x: Int -> power(x.toDouble(), 2).toInt() }
@@ -28,6 +31,10 @@ fun main() {
 
 infix fun <F, G, R> ((F) -> R).compose(g: (G) -> F): (G) -> R {
     return { gInput: G -> this(g(gInput)) }
+}
+
+infix fun <F, G, R> ((F) -> G).and(g: (G) -> R): (F) -> R {
+    return { gInput: F -> g(this(gInput)) }
 }
 
 tailrec fun gcd(m: Int, n: Int): Int = when (n) {

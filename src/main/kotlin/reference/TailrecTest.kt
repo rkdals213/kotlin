@@ -7,4 +7,6 @@ fun main() {
     println(findFixPoint)
 }
 
-tailrec fun findFixPoint(x: Double = 1.0): Double = if (x == cos(x)) x else findFixPoint(cos(x))
+tailrec fun findFixPoint(x: Double = 1.0): Double =
+    if (x == cos(x)) x
+    else findFixPoint(cos(x))
